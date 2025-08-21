@@ -1,133 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plastica</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            color: #4A148C;
-            text-align: left;
-        }
-        h1 {
-            color: #7B1FA2;
-            font-size: 5rem;
-            text-align: center;
-            margin-top: 30px;
-        }
-        h2, h3 {
-            color: #6A1B9A;
-            font-size: 3.5rem;
-        }
-        p {
-            font-size: 2rem;
-            line-height: 1.8;
-            margin: 20px;
-        }
-        a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 2.5rem;
-            margin: 20px;
-            display: block;
-            text-align: left;
-            width: fit-content;
-            padding: 15px 30px;
-            border-radius: 10px;
-            background-color: #7B1FA2;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        a:hover {
-            background-color: #6A1B9A;
-            transform: scale(1.05);
-        }
-        .hidden {
-            display: none;
-        }
-        .back-button {
-            color: #7B1FA2;
-            cursor: pointer;
-            display: inline-block;
-            margin: 20px;
-            font-size: 2.5rem;
-        }
-        #home {
-            padding: 60px;
-            position: relative;
-        }
-        .section {
-            padding: 30px;
-            margin: 40px;
-            background-color: rgba(245, 245, 255, 0.95);
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        .custom-box {
-            margin: 40px auto;
-            padding: 20px;
-            background-color: #f3e5f5;
-            border: 2px solid #7B1FA2;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            text-align: center;
-            font-size: 2rem;
-        }
-    </style>
-    <script>
-        function showSection(sectionId) {
-            document.getElementById('home').classList.add('hidden');
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => section.classList.add('hidden'));
-            document.getElementById(sectionId).classList.remove('hidden');
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plastica</title>
+  <style>
+    /* כללי */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f4ff, #e0e7ff);
+      color: #222;
+    }
 
-        function goBack() {
-            document.getElementById('home').classList.remove('hidden');
-            document.querySelectorAll('.section').forEach(section => section.classList.add('hidden'));
-        }
-    </script>
+    header {
+      background: #3f51b5;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    nav {
+      margin-top: 15px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      font-size: 1.2rem;
+      padding: 8px 15px;
+      border-radius: 30px;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      display: none;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #3f51b5;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .contact-box {
+      background: #e8eaf6;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      margin-top: 30px;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .contact-box strong {
+      color: #3f51b5;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-    <div id="home">
-        <h1>Welcome to Plastica</h1>
-        <p>We’re an independent mobile game studio based in Israel. We specialize in crafting simple yet addictive games that anyone can enjoy, anytime and anywhere. Our mission is to deliver fast, fun experiences right at your fingertips.</p>
-        <a href="#" onclick="showSection('about')">About Us</a>
-        <a href="#" onclick="showSection('privacy')">Privacy Policy</a>
-        <a href="#" onclick="showSection('terms')">Terms of Use</a>
+  <header>
+    <h1>Plastica</h1>
+    <nav>
+      <a href="#" onclick="showSection('home')">Home</a>
+      <a href="#" onclick="showSection('about')">About</a>
+      <a href="#" onclick="showSection('privacy')">Privacy</a>
+      <a href="#" onclick="showSection('terms')">Terms</a>
+    </nav>
+  </header>
 
-        <div class="custom-box">
-            Got a question or feedback?<br>
-            Contact us: <strong>gilonaria70@gmail.com</strong>
-        </div>
+  <main>
+    <div id="home" class="section active">
+      <h2>Welcome to Plastica</h2>
+      <p>We’re an independent mobile game studio based in Israel. Our passion is creating simple yet highly addictive hyper-casual games that anyone can enjoy, anytime and anywhere.</p>
+      <p>Our mission: deliver quick, fun gaming experiences right at your fingertips.</p>
+      <div class="contact-box">
+        Questions or feedback? <br>
+        Contact us: <strong>gilonaria70@gmail.com</strong>
+      </div>
     </div>
 
-    <div id="about" class="section hidden">
-        <span class="back-button" onclick="goBack()">&larr; Back</span>
-        <h2>About Us</h2>
-        <h3>Who We Are</h3>
-        <p>Plastica is a game development team focused on hyper-casual entertainment. We love creating experiences that are quick to learn, fun to play, and hard to put down. Whether it’s a five-minute break or a late-night gaming binge, our titles are designed to fit your schedule and deliver smiles every time.</p>
-        <p>Driven by creativity, minimalism, and innovation, we’re on a mission to make the next big tap-to-play hit.</p>
-        <p>Contact: <a href="mailto:gilonaria70@gmail.com">gilonaria70@gmail.com</a></p>
+    <div id="about" class="section">
+      <h2>About Us</h2>
+      <p>Plastica is a team of creative developers dedicated to hyper-casual entertainment. We design games that are quick to learn, fun to play, and hard to put down. Whether you’ve got five minutes or a whole evening, our games are made to bring joy.</p>
+      <p>We’re driven by creativity, minimalism, and innovation, striving to craft the next big tap-to-play hit.</p>
+      <p>Contact: <a href="mailto:gilonaria70@gmail.com">gilonaria70@gmail.com</a></p>
     </div>
 
-    <div id="privacy" class="section hidden">
-        <span class="back-button" onclick="goBack()">&larr; Back</span>
-        <h2>Privacy Policy</h2>
-        <p>This app is built and maintained by Plastica as an ad-supported experience. We don’t collect any personal information ourselves, but third-party services (like Unity and Google Play Services) may collect anonymized data to improve the app's performance and ads.</p>
-        <p>We don’t store personal data, and we respect your privacy. For full details on how third parties may collect information, please review their respective privacy policies.</p>
+    <div id="privacy" class="section">
+      <h2>Privacy Policy</h2>
+      <p>Our apps are built and maintained as ad-supported experiences. We do not collect personal information. However, third-party services such as Unity and Google Play Services may collect anonymized data to enhance performance and deliver ads.</p>
+      <p>We respect your privacy and do not store personal data. For more information, please review the privacy policies of our partners.</p>
     </div>
 
-    <div id="terms" class="section hidden">
-        <span class="back-button" onclick="goBack()">&larr; Back</span>
-        <h2>Terms of Use</h2>
-        <p>By downloading or using our app, you agree to these terms. You may not copy, modify, or distribute any part of the app. Any misuse, including cheating or tampering, can result in revoked access.</p>
-        <p>This app is intended for casual entertainment. It requires internet connectivity for full functionality. Users are responsible for data usage, device security, and app updates.</p>
-        <p>We reserve the right to modify or remove access to the app at any time without notice.</p>
+    <div id="terms" class="section">
+      <h2>Terms of Use</h2>
+      <p>By using our app, you agree not to copy, modify, or redistribute it. Any misuse, including cheating or tampering, may lead to revoked access.</p>
+      <p>Our games are intended for casual entertainment. Internet connectivity may be required for full functionality. Users are responsible for data usage and device security.</p>
+      <p>We reserve the right to update or remove access to the app at any time without notice.</p>
     </div>
+  </main>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+  </script>
 </body>
 </html>
